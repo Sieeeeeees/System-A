@@ -1,0 +1,264 @@
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --bg-light: #f3f4f6;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --card-bg: #ffffff;
+    --radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body { background-color: var(--bg-light); color: var(--text-main); }
+.hidden { display: none !important; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 1.5rem; }
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); font-size: 0.9rem; }
+.full-width { width: 100%; }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+.login-wrapper { display: flex; justify-content: center; align-items: center; min-height: 80vh; }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+h2 { margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600; }
+
+.count-display {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 1rem 0;
+}
+
+.input-group input, .form-select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+}
+
+.form-select { font-weight: 600; cursor: pointer; }
+.divider { display: flex; align-items: center; text-align: center; margin: 1rem 0; color: var(--text-muted); font-size: 0.8rem; font-weight: bold; }
+.divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-color); }
+.divider span { padding: 0 10px; }
+
+/* Buttons */
+.btn { padding: 0.75rem 1.5rem; border: none; border-radius: var(--radius); color: white; cursor: pointer; font-weight: 600; font-size: 1rem; transition: opacity 0.2s; }
+.btn:hover { opacity: 0.9; }
+.btn-primary { background-color: var(--primary); }
+.btn-in { background-color: var(--success); }
+.btn-out { background-color: var(--danger); }
+.btn-group { display: flex; gap: 1rem; }
+.btn-group .btn { flex: 1; }
+
+.btn-outline-danger {
+    background: transparent; color: var(--danger);
+    border: 1px solid var(--danger); padding: 0.5rem 1rem;
+    border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+.btn-outline-danger:hover { background: var(--danger); color: white; }
+
+/* Alerts & Tables */
+.error-text { color: var(--danger); text-align: center; margin-top: 1rem; }
+.alert-card { border: 1px solid #fecdd3; background-color: #fff1f2; }
+.alert-card h2 { color: #be123c; margin-top: 0; }
+
+.absent-list { list-style: none; font-weight: 600; }
+.absent-list li { padding: 0.75rem 0; border-bottom: 1px solid #fecdd3; color: var(--danger); }
+.absent-list li.perfect { color: var(--success); border: none; }
+
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+th { background-color: var(--bg-light); font-weight: 600; color: var(--text-muted); }
+.status-in { color: var(--success); font-weight: bold; }
+.status-out { color: var(--danger); font-weight: bold; }
+
+/* ... [Keep all your existing CSS from earlier] ... */
+
+/* --- Password Peek Icon Styles --- */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.password-wrapper input {
+    margin-bottom: 0 !important; /* Override standard input margin */
+    padding-right: 2.5rem;       /* Make space for the icon */
+}
+
+.password-wrapper button {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.password-wrapper button:hover {
+    color: var(--primary);
+}
+
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --bg-light: #f3f4f6;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --card-bg: #ffffff;
+    --radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body { background-color: var(--bg-light); color: var(--text-main); }
+.hidden { display: none !important; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 1.5rem; }
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); font-size: 0.9rem; }
+.full-width { width: 100%; }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+.login-wrapper { display: flex; justify-content: center; align-items: center; min-height: 80vh; }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+h2 { margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600; }
+
+.count-display {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 1rem 0;
+}
+
+.input-group input, .form-select {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
+}
+
+.form-select { font-weight: 600; cursor: pointer; }
+.divider { display: flex; align-items: center; text-align: center; margin: 1rem 0; color: var(--text-muted); font-size: 0.8rem; font-weight: bold; }
+.divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-color); }
+.divider span { padding: 0 10px; }
+
+/* Buttons */
+.btn { padding: 0.75rem 1.5rem; border: none; border-radius: var(--radius); color: white; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.2s; }
+.btn:hover { opacity: 0.9; }
+.btn-primary { background-color: var(--primary); }
+.btn-in { background-color: var(--success); }
+.btn-out { background-color: var(--danger); }
+.btn-outline { background-color: transparent; border: 1px solid var(--primary); color: var(--primary); }
+.btn-outline:hover { background-color: var(--primary); color: white; }
+.btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-group .btn { flex: 1; min-width: 100px; }
+
+.btn-outline-danger {
+    background: transparent; color: var(--danger);
+    border: 1px solid var(--danger); padding: 0.5rem 1rem;
+    border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+.btn-outline-danger:hover { background: var(--danger); color: white; }
+
+/* QR Generator Box */
+.qr-result-box { display: flex; justify-content: center; margin-top: 1rem; min-height: 150px; align-items: center; }
+.qr-result-box img { max-width: 200px; border: 10px solid white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+
+/* Password Peek */
+.password-wrapper { position: relative; width: 100%; margin-bottom: 0.75rem; }
+.password-wrapper input { margin-bottom: 0 !important; padding-right: 2.5rem; }
+.password-wrapper button { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); background: transparent; border: none; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: color 0.2s; }
+.password-wrapper button:hover { color: var(--primary); }
+
+/* Alerts & Tables */
+.error-text { color: var(--danger); text-align: center; margin-top: 1rem; }
+.alert-card { border: 1px solid #fecdd3; background-color: #fff1f2; }
+.alert-card h2 { color: #be123c; margin-top: 0; }
+
+.absent-list { list-style: none; font-weight: 600; }
+.absent-list li { padding: 0.75rem 0; border-bottom: 1px solid #fecdd3; color: var(--danger); }
+.absent-list li.perfect { color: var(--success); border: none; }
+
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+th { background-color: var(--bg-light); font-weight: 600; color: var(--text-muted); }
+.status-in { color: var(--success); font-weight: bold; }
+.status-out { color: var(--danger); font-weight: bold; }

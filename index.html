@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AttendFlow Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- QR Scanner Library -->
+    <script src="https://unpkg.com/html5-qrcode" defer></script>
+    <!-- NEW: QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>AttendFlow</h1>
+        <button id="logout-btn" onclick="logout()" class="btn btn-out hidden">Logout</button>
+    </nav>
+
+    <!-- Admin Login Screen -->
+    <div id="login-container" class="login-wrapper">
+        <div class="card">
+            <h2>Admin Login</h2>
+            <form id="login-form" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Password" required>
+                        <button type="button" onclick="togglePassword()" aria-label="Toggle Password Visibility">
+                            <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">Login</button>
+                <p id="login-error" class="error-text hidden">Invalid credentials.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Protected Dashboard -->
+    <main class="container hidden" id="dashboard-container">
+        
+        <section class="dashboard-grid">
+            <!-- Occupancy Card -->
+            <div class="card text-center">
+                <h2>Current Occupancy</h2>
+                <div id="occupancy-count" class="count-display">0</div>
+                <p class="text-muted">Individuals currently on campus</p>
+            </div>
+            
+            <!-- Scanning Interface -->
+            <div class="card">
+                <h2>Scan or Enter Details</h2>
+                
+                <select id="camera-mode" class="form-select">
+                    <option value="IN">QR Mode: Scan IN (Papasok)</option>
+                    <option value="OUT">QR Mode: Scan OUT (Lalabas)</option>
+                </select>
+                
+                <div id="qr-reader" class="hidden qrcode-container"></div>
+                <button id="camera-btn" onclick="toggleCamera()" class="btn btn-primary full-width mb-1">Open Camera</button>
+
+                <div class="divider"><span>OR ENTER MANUALLY</span></div>
+                
+                <div class="input-group mb-1">
+                    <input type="text" id="student-id" placeholder="Student ID (e.g. 2026-0001)">
+                    <input type="text" id="student-name" placeholder="Student Name (e.g. Juan Dela Cruz)">
+                </div>
+                <div class="btn-group">
+                    <button onclick="simulateScan('IN')" class="btn btn-in">Scan IN</button>
+                    <button onclick="simulateScan('OUT')" class="btn btn-out">Scan OUT</button>
+                </div>
+            </div>
+
+            <!-- NEW: QR Code Generator Card -->
+            <div class="card">
+                <h2>Generate Student QR</h2>
+                <p class="text-muted mb-1">Create a custom QR code for a student.</p>
+                <div class="input-group mb-1">
+                    <input type="text" id="gen-student-id" placeholder="Student ID">
+                    <input type="text" id="gen-student-name" placeholder="Student Name">
+                </div>
+                <button onclick="generateQR()" class="btn btn-primary full-width">Generate QR Code</button>
+                
+                <!-- This is where the generated QR Code will appear -->
+                <div id="qrcode-display" class="qr-result-box"></div>
+            </div>
+        </section>
+
+        <!-- Absent Checker -->
+        <section class="card alert-card mb-2">
+            <h2>Absent Students Today</h2>
+            <button onclick="fetchAbsent()" class="btn btn-outline-danger mb-1">Refresh Absentees</button>
+            <ul id="absent-list" class="absent-list"></ul>
+        </section>
+
+        <!-- NEW: Attendance Reports Section -->
+        <section class="card mb-2">
+            <h2>Attendance Reports</h2>
+            <div class="btn-group mb-1">
+                <button onclick="fetchReports('today')" class="btn btn-primary" id="btn-rep-today">Today</button>
+                <button onclick="fetchReports('yesterday')" class="btn btn-outline" id="btn-rep-yesterday">Yesterday</button>
+                <button onclick="fetchReports('week')" class="btn btn-outline" id="btn-rep-week">Last 7 Days</button>
+            </div>
+            <div class="table-responsive">
+                <table id="reports-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reports-body">
+                        <!-- Reports populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Recent Logs -->
+        <section class="card">
+            <h2>Live Recent Activity</h2>
+            <div class="table-responsive">
+                <table id="logs-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-body">
+                        <!-- Logs populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
